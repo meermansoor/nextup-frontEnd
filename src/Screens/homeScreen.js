@@ -1,12 +1,49 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  FlatList,
+} from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 
 export default function HomeScreen() {
   const [selectedProject, setSelectedProject] = useState("Life");
+  const projectData = {
+    Life: [
+      { id: "1", name: "Workout Routine", goal: "Exercise daily at 7 AM" },
+      { id: "2", name: "Read Books", goal: "Finish 1 book every 2 weeks" },
+    ],
+    Career: [
+      {
+        id: "3",
+        name: "Build Portfolio",
+        goal: "Launch portfolio website by July",
+      },
+      {
+        id: "4",
+        name: "Learn React Native",
+        goal: "Complete a mobile app project",
+      },
+    ],
+    Completed: [
+      {
+        id: "5",
+        name: "Meditation Habit",
+        goal: "Meditated for 30 days straight",
+      },
+      {
+        id: "6",
+        name: "Resume Updated",
+        goal: "Updated and sent to 10 companies",
+      },
+    ],
+  };
 
   return (
-    <View style={styles.container}>
+    <><View style={styles.container}>
       {/* Top Menu */}
       <View style={styles.menuContainer}>
         <TouchableOpacity>
@@ -16,8 +53,7 @@ export default function HomeScreen() {
         <TouchableOpacity>
           <Image
             source={require("../images/splogo.jpg")}
-            style={styles.profileIcon}
-          />
+            style={styles.profileIcon} />
         </TouchableOpacity>
       </View>
 
@@ -32,9 +68,13 @@ export default function HomeScreen() {
         <View style={styles.circleWrapper}>
           <View style={styles.whiteDot} />
           <View style={styles.circle}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Text style={styles.percentText}>0/</Text>
-              <Text style={{ fontSize: 10, color: 'white', fontWeight: 'bold' }}>10</Text>
+              <Text
+                style={{ fontSize: 10, color: "white", fontWeight: "bold" }}
+              >
+                10
+              </Text>
             </View>
           </View>
         </View>
@@ -51,14 +91,14 @@ export default function HomeScreen() {
             key={type}
             style={[
               styles.projectTypeButton,
-              selectedProject === type && styles.selectedButton
+              selectedProject === type && styles.selectedButton,
             ]}
             onPress={() => setSelectedProject(type)}
           >
             <Text
               style={[
                 styles.projectTypeText,
-                selectedProject === type && styles.selectedText
+                selectedProject === type && styles.selectedText,
               ]}
             >
               {type} Projects
@@ -68,20 +108,20 @@ export default function HomeScreen() {
       </View>
       <View>
         <FlatList
-          data={project}
-          keyExtractor={(type)=> type.id}
-          renderItem={(type)=>(
-            <View>
-              <Text> {type.projects}</Text>
+          data={projectData[selectedProject]}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <View style={styles.projectCard}>
+              <Text style={styles.projectName}>{item.name}</Text>
+              <Text style={styles.projectGoal}>{item.goal}</Text>
             </View>
           )}
-
-        />
-      </View>
-    </View>
+          contentContainerStyle={{ paddingBottom: 50 }} />
+           </View>
+   
+      </View></>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -109,19 +149,17 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   projectCountContainer: {
-    flex: 1/6,
-    flexDirection:'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
     paddingVertical: 20,
     paddingHorizontal: 15,
-    width: '89%',
-    backgroundColor: '#c2272d',
+    width: "89%",
+    backgroundColor: "#c2272d",
     borderRadius: 10,
     marginTop: 20,
-    alignSelf: 'center',
+    alignSelf: "center",
   },
-
 
   projectCountText: {
     fontSize: 20,
@@ -136,16 +174,16 @@ const styles = StyleSheet.create({
   },
 
   circleWrapper: {
-    alignItems: 'center',
+    alignItems: "center",
     marginLeft: 20,
     marginRight: 10,
   },
   whiteDot: {
-    position: 'absolute',
+    position: "absolute",
     top: -6,
     width: 15,
     height: 15,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 10,
     zIndex: 1,
   },
@@ -153,50 +191,78 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    borderWidth:1,
-    borderColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#c2272d',
+    borderWidth: 1,
+    borderColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#c2272d",
   },
   percentText: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
     fontSize: 16,
   },
   projectTextContainer: {
-    justifyContent: 'center',
+    justifyContent: "center",
   },
 
   projectTypes: {
     marginTop: 20,
-    width: '99%',
-    alignSelf: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    width: "99%",
+    alignSelf: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
     paddingVertical: 20,
     paddingHorizontal: 15,
   },
   projectTypeButton: {
-    width: '30%',
-    height: 25,
-    backgroundColor: 'white',
+    width: "32%",
+    height: 30,
+    backgroundColor: "white",
     borderRadius: 14,
     borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   projectTypeText: {
     fontSize: 9,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
   },
   selectedButton: {
-    backgroundColor: '#c2272d',
-    borderColor: '#c2272d',
+    backgroundColor: "#c2272d",
+    borderColor: "#c2272d",
   },
   selectedText: {
-    color: 'white',
+    color: "white",
   },
-  
+
+  projectCard: {
+    backgroundColor: "#f4f4f4",
+    marginHorizontal: 20,
+    marginVertical: 10,
+    padding: 15,
+    borderRadius: 20,
+    elevation: 4,
+  },
+  projectName: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  projectGoal: {
+    fontSize: 13,
+    color: "#666",
+    marginTop: 5,
+  },
+  bottomContainer: {
+
+    backgroundColor: "black",
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    marginBottom: 50,
+  },
 });

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, View, TextInput, Text, Button, Alert } from "react-native";
+import { StyleSheet, View, TextInput, } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 

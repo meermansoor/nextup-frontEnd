@@ -42,8 +42,8 @@ export default function SignInScreen({ navigation }) {
           </Text>
           <Text style={[styles.heading]}>Welcome Back!</Text>
 
-          <View style={{flexDirection:'row'}}>
-          <FontAwesome5 name="user-circle" size={30} color="#c2272d"  />
+          <View style={{}}>
+          {/* <FontAwesome5 name="user-circle" size={30} color="#c2272d"  /> */}
 
           <TextInput
             style={styles.textFields}
@@ -85,7 +85,7 @@ export default function SignInScreen({ navigation }) {
               marginTop: 25,
             }}
           >
-            <Text style={{ fontSize: 19, color: "black", fontWeight: "bold" }}>
+            <Text style={[styles.forgotText,{fontWeight: "bold" }]}>
               New User?{" "}
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate('sign-up')}>
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
     elevation: 5,
     flexDirection: "column",
-    justifyContent: "flex-start",
+    justifyContent: "center",
   },
   heading: {
     fontSize: 22,
@@ -151,15 +151,18 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderRadius: 8,
     padding: 16,
-    fontSize: 16,
+    fontSize: 20,
+    fontWeight: "bold",
     marginVertical: 10,
+    height: 60,
     color: "#000",
   },
   forgotText: {
     textAlign: "right",
     color: "#888",
-    fontSize: 19,
+    fontSize: 22,
     marginTop: 5,
+    fontWeight: "bold",
   },
   button: {
     backgroundColor: "#c2272d",
@@ -170,7 +173,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontSize: 16,
+    fontSize: 25,
     fontWeight: "bold",
   },
 });

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, StatusBar, Image, Button } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
+import { StatusBar } from 'expo-status-bar';
 
 export default function SplashScreen({navigation}) {
   useEffect(() => {
@@ -13,9 +14,10 @@ export default function SplashScreen({navigation}) {
   return (
     <View style={styles.container}>
         <Image source={require('../images/splogo.jpg')} style={styles.logoImg} resizeMode='contain'/>
-      <StatusBar hidden={true} />
-      <View>
-      </View>
+        <StatusBar style="light" />
+        <View>
+          <Text style={styles.text}>Welcome to next UP</Text>
+        </View>
     </View>
   );
 }
